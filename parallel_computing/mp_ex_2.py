@@ -33,8 +33,8 @@ def run_experiment():
     # 2. Run Serial ONCE (Baseline)
     print("Running Serial...", end="", flush=True)
     t0 = time.time()
-    list(map(partial(power, exponent=exponent), data))
-    # list(map(partial(heavy_computation, exponent=exponent), data)) 
+    # list(map(partial(power, exponent=exponent), data))
+    list(map(partial(heavy_computation, exponent=exponent), data)) 
     t_serial = time.time() - t0
     print(f" Done ({t_serial:.2f}s)")
 
@@ -48,8 +48,8 @@ def run_experiment():
         t0 = time.time()
         # Important: Context manager ensures the pool closes immediately
         with mp.Pool(processes=n_proc) as pool:
-            pool.map(partial(power, exponent=exponent), data)
-            # pool.map(partial(heavy_computation, exponent=exponent), data) 
+            # pool.map(partial(power, exponent=exponent), data)
+            pool.map(partial(heavy_computation, exponent=exponent), data) 
         t_parallel = time.time() - t0
         parallel_times.append(t_parallel)
         print(f".", end="", flush=True) # Progress dot
@@ -62,7 +62,7 @@ if __name__ == "__main__":
     mp.set_start_method("spawn", force=True)
     
     # Run the experiment 3 times for statistics
-    repeats = 3
+    repeats = 2
     serial_results = []
     parallel_results = []
     

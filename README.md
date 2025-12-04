@@ -27,7 +27,7 @@ We provide two options to set up the environment for this course, either via pip
 1. Ensure you have Anaconda or Miniconda installed.
 2. Create the environment from the file (this handles Python version and packages automatically):
     ```bash
-    conda env create -f environment.yml
+    conda env create -f env.yml
     ```
 3. Activate the environment:
     ```bash
